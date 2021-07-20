@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta property="og:title" content="台灣人流分佈圖" />
+        <meta property="og:description" content="以地圖呈現各區域在不同時間的人流數字，反映人流狀況。"/>
+        <meta property="og:locale" content="zh_TW" />
+        <meta property="og:type" content="website" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" integrity="sha512-usVBAd66/NpVNfBge19gws2j6JZinnca12rAe2l+d+QkLU9fiG02O1X8Q6hepIpr/EYKZvKx/I9WsnujJuOmBA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/4.6.5/ol.css" integrity="sha512-D2c/nmSVlwoZk29SLwJK8GkLyCyPuNbZ/vZQL/lNzw+o+yXzsbnJt7lK/iCfdBmgyLRDi0qx27gpE8Zb1C6I7g==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sidebar-v2@0.4.0/css/ol3-sidebar.min.css" type="text/css" />
+        <link rel="stylesheet" href="css/movement-distribution-map.css" type="text/css" />
+        <title>台灣人流分佈圖</title>
+    </head>
+    <body>
+        <div id="sidebar" class="sidebar collapsed">
+            <div class="sidebar-tabs">
+                <ul role="tablist">
+                    <li>
+                        <a href="#home" role="tab"><i class="fas fa-bars"></i></a>
+                    </li>
+                    <li>
+                        <a href="#book" role="tab"><i class="fas fa-book"></i></a>
+                    </li>
+                    <li>
+                        <a href="#settings" role="tab"><i class="fas fa-cog"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/henryleeworld/js-taiwan-movement-distribution-map" role="tab" target="_blank"><i class="fa fa-github"></i></a>
+                    </li>
+                    <li>
+                        <a href="#fb" role="tab"><i class="fa fa-facebook"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar-content">
+                <div class="sidebar-pane" id="home">
+                    <h1 class="sidebar-header">
+                        <span id="sidebarTitle">請點選地圖中的點</span><span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+                    <div id="sidebarContent">請點選地圖中的點</div>
+                    * 2020/11 資料
+                    <hr />
+                    <div class="btn-group-vertical" role="group" style="width: 100%;">
+                        <a href="https://github.com/henryleeworld/js-taiwan-movement-distribution-map/issues" target="_blank" class="btn btn-primary btn-lg btn-block">網站問題反應</a>
+                    </div>
+                </div>
+                <div class="sidebar-pane" id="book">
+                    <h1 class="sidebar-header">
+                        <span>說明</span><span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+                    <div>
+                        資料來源：
+                        <ul>
+                            <li><a href="https://segis.moi.gov.tw/STAT/Web/Portal/STAT_PortalHome.aspx" target="_blank">社會經濟資料服務平台</a></li>
+                            <li><a href="https://data.gov.tw/dataset/131138" target="_blank">各村（里）人口統計月報表（含同婚）</a></li>
+                            <li><a href="https://data.gov.tw/dataset/7441" target="_blank">鄉鎮市區界線(TWD97經緯度)</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-pane" id="settings">
+                    <h1 class="sidebar-header">
+                        <span>設定</span><span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+                    <div>
+                        <a href="#" class="btn btn-primary btn-lg btn-block" id="btn-geolocation">回到目前位置</a>
+                        <p><hr/></p>
+                    </div>
+                    <div class="btn-group-vertical btn-block">
+                        <a href="#" class="btn btn-primary btn-lg btn-block btn-key" data-key="work_night">平日夜間停留人數</a>
+                        <a href="#" class="btn btn-secondary btn-lg btn-block btn-key" data-key="work_day1">平日上午活動人數</a>
+                        <a href="#" class="btn btn-secondary btn-lg btn-block btn-key" data-key="work_day2">平日下午活動人數</a>
+                        <a href="#" class="btn btn-secondary btn-lg btn-block btn-key" data-key="work_day">平日日間活動人數</a>
+                        <a href="#" class="btn btn-secondary btn-lg btn-block btn-key" data-key="weekend_night">假日夜間停留人數</a>
+                        <a href="#" class="btn btn-secondary btn-lg btn-block btn-key" data-key="weekend_day1">假日上午活動人數</a>
+                        <a href="#" class="btn btn-secondary btn-lg btn-block btn-key" data-key="weekend_day2">假日下午活動人數</a>
+                        <a href="#" class="btn btn-secondary btn-lg btn-block btn-key" data-key="weekend_day">假日日間活動人數</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="map" class="sidebar-map"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.27.2/apexcharts.min.js" integrity="sha512-x5xh6YERYOQMuUX0SIcVLdJfBSN/m9EIkGkBpUovPO5lj6P4ekarIhYzRMY9vBoYwG08LV7o6A8tO1i2RJs+5g==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+        <script src="js/ol.js" type="text/javascript" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/sidebar-v2@0.4.0/js/ol3-sidebar.min.js" defer></script>
+        <script src="js/movement-distribution-map.js" type="text/javascript" defer></script>
+    </body>
+</html>
