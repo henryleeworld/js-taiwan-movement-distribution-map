@@ -19,7 +19,7 @@ var content = document.getElementById('sidebarContent');
 var cityMeta = {};
 
 var appView = new ol.View({
-    center: ol.proj.fromLonLat([120.221507, 23.000694]),
+    center: ol.proj.fromLonLat([121.564101, 25.033493]),
     zoom: 14
 });
 
