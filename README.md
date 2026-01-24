@@ -11,8 +11,8 @@ $ git clone
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/YnacCIj.png)
+![](https://i.imgur.com/ZNNFfAY.png)
 > 運用基地台的訊號，進行新型態人口統計，掌握動態人流
 
-![](https://i.imgur.com/CwNLpt9.png)
+![](https://i.imgur.com/074utWY.png)
 > 相關資料可作為防疫部署參考
